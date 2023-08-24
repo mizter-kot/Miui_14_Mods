@@ -1,0 +1,571 @@
+# Настройки тоглов в центре управления: цвета, закругления, обводка
+
+## MiuiSystemUIPlugin.apk
+
+### Класс Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;
+
+В методе
+
+```smali
+.method private final getBgDrawableFromState(Lcom/android/systemui/plugins/qs/QSTile$State;)Landroid/graphics/drawable/Drawable;
+```
+
+после .locals добавить
+
+```smali
+invoke-direct {p0}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getMyNewCcSettingsEnabled()Z
+
+move-result v0
+
+if-eqz v0, :get_default_bg
+
+iget v0, p1, Lcom/android/systemui/plugins/qs/QSTile$State;->state:I
+
+invoke-direct {p0, v0}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getCustomBgDrawableFromState(I)Landroid/graphics/drawable/Drawable;
+
+move-result-object v0
+
+return-object v0
+
+:get_default_bg
+```
+
+В методе
+
+```smali
+.method public updateIcon(Landroid/widget/ImageView;Lcom/android/systemui/plugins/qs/QSTile$State;Z)V
+```
+
+найти следующий блок кода
+
+```smali
+iget-object v7, p0, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->pluginContext:Landroid/content/Context;
+
+invoke-virtual {v7}, Landroid/content/Context;->getTheme()Landroid/content/res/Resources$Theme;
+
+move-result-object v7
+
+sget v8, Lmiui/systemui/controlcenter/R$drawable;->qs_background_disabled:I
+
+invoke-virtual {v7, v8}, Landroid/content/res/Resources$Theme;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+move-result-object v7 # <--- v7 = disabled background drawable
+
+const-string v8, "pluginContext.theme.getD\u2026e.qs_background_disabled)"
+
+invoke-static {v7, v8}, Lb/f/b/l;->b(Ljava/lang/Object;Ljava/lang/String;)V
+
+iget-object v8, p0, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->pluginContext:Landroid/content/Context;
+
+invoke-virtual {v8}, Landroid/content/Context;->getTheme()Landroid/content/res/Resources$Theme;
+
+move-result-object v8
+
+invoke-direct {p0, p2}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getActiveBgDrawable(Lcom/android/systemui/plugins/qs/QSTile$State;)I
+
+move-result v9
+
+invoke-virtual {v8, v9}, Landroid/content/res/Resources$Theme;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+move-result-object v8
+
+invoke-virtual {v8}, Landroid/graphics/drawable/Drawable;->mutate()Landroid/graphics/drawable/Drawable;
+
+move-result-object v8 # <--- v8 = active background drawable
+```
+
+добавить следующий блок кода ДО него
+
+```smali
+invoke-direct {p0}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getMyNewCcSettingsEnabled()Z
+
+move-result v7
+
+if-eqz v7, :set_default_bgs
+
+const/4 v7, 0x1
+
+invoke-direct {p0, v7}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getCustomBgDrawableFromState(I)Landroid/graphics/drawable/Drawable;
+
+move-result-object v7 # <--- v7 = disabled background drawable
+
+const/4 v8, 0x2
+
+invoke-direct {p0, v8}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getCustomBgDrawableFromState(I)Landroid/graphics/drawable/Drawable;
+
+move-result-object v8 # <--- v8 = active background drawable
+
+goto :after_set_default_bgs
+
+:set_default_bgs
+```
+
+и добавить следующую строку ПОСЛЕ него
+
+```smali
+:after_set_default_bgs
+```
+
+Добавить в конец класса
+
+```smali
+.field private static myDefaultActiveBgColor:I = 0xff3d84ff
+
+.field private static myDefaultDisabledBgColor:I = 0x26ffffff
+
+.method private getMyNewCcSettingsEnabled()Z
+    .locals 3
+    
+    iget-object v0, p0, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->pluginContext:Landroid/content/Context;
+    
+    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    
+    move-result-object v0
+    
+    const-string v1, "my_new_cc_settings_enabled"
+    
+    const/4 v2, 0x0
+    
+    invoke-static {v0, v1, v2}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v2
+    
+    return v2    
+.end method
+
+.method private getCustomBgDrawableFromState(I)Landroid/graphics/drawable/Drawable;
+    .param p1 # QSTile$State;->state:I
+    .locals 6
+    
+    iget-object v5, p0, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->pluginContext:Landroid/content/Context;
+    
+    invoke-virtual {v5}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    
+    move-result-object v5
+    
+    new-instance v0, Landroid/graphics/drawable/GradientDrawable;
+
+    invoke-direct {v0}, Landroid/graphics/drawable/GradientDrawable;-><init>()V
+    
+    const-string v1, "my_standard_tile_bg_gradient_enabled"
+    
+    const/4 v2, 0x0
+    
+    invoke-static {v5, v1, v2}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v1
+    
+    if-nez v1, :gradient_enabled
+    
+    const/4 v1, 0x2
+    
+    if-ne v1, p1, :disabled_or_unavailable_single_color
+    
+    const-string v1, "my_active_standard_tile_bg_color"
+    
+    sget v2, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->myDefaultActiveBgColor:I
+    
+    goto :set_single_color
+    
+    :disabled_or_unavailable_single_color
+    if-eqz p1, :unavailable_single_color
+    
+    const-string v1, "my_disabled_standard_tile_bg_color"
+    
+    sget v2, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->myDefaultDisabledBgColor:I
+    
+    goto :set_single_color
+    
+    :unavailable_single_color
+    const-string v1, "my_unavailable_standard_tile_bg_color"
+    
+    sget v2, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->myDefaultDisabledBgColor:I
+    
+    :set_single_color
+    invoke-static {v5, v1, v2}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v1
+
+    invoke-virtual {v0, v1}, Landroid/graphics/drawable/GradientDrawable;->setColor(I)V
+    
+    goto :set_stroke_strings
+    
+    :gradient_enabled
+    invoke-virtual {v0, v2}, Landroid/graphics/drawable/GradientDrawable;->setGradientType(I)V # 0x0 = LINEAR_GRADIENT
+    
+    invoke-direct {p0, p1}, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->getGradientOrientationForStandardTile(I)Landroid/graphics/drawable/GradientDrawable$Orientation;
+    
+    move-result-object v1
+    
+    invoke-virtual {v0, v1}, Landroid/graphics/drawable/GradientDrawable;->setOrientation(Landroid/graphics/drawable/GradientDrawable$Orientation;)V
+    
+    const/4 v1, 0x2
+    
+    if-ne v1, p1, :disabled_or_unavailable_gradient_colors
+    
+    const-string v1, "my_active_standard_tile_bg_gradient_first_color"
+    
+    const-string v2, "my_active_standard_tile_bg_gradient_second_color"
+    
+    sget v3, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->myDefaultActiveBgColor:I
+    
+    goto :set_gradient_colors
+    
+    :disabled_or_unavailable_gradient_colors
+    if-eqz p1, :unavailable_gradient_colors
+    
+    const-string v1, "my_disabled_standard_tile_bg_gradient_first_color"
+    
+    const-string v2, "my_disabled_standard_tile_bg_gradient_second_color"
+    
+    sget v3, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->myDefaultDisabledBgColor:I
+    
+    goto :set_gradient_colors
+    
+    :unavailable_gradient_colors
+    const-string v1, "my_unavailable_standard_tile_bg_gradient_first_color"
+    
+    const-string v2, "my_unavailable_standard_tile_bg_gradient_second_color"
+    
+    sget v3, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->myDefaultDisabledBgColor:I
+    
+    :set_gradient_colors
+    invoke-static {v5, v1, v3}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v1
+    
+    invoke-static {v5, v2, v3}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v2
+    
+    const/4 v3, 0x2 # array size
+    
+    new-array v4, v3, [I
+    
+    const/4 v3, 0x0 # first element
+    
+    aput v1, v4, v3
+    
+    const/4 v3, 0x1 # second element
+    
+    aput v2, v4, v3
+    
+    invoke-virtual {v0, v4}, Landroid/graphics/drawable/GradientDrawable;->setColors([I)V
+    
+    :set_stroke_strings
+    const/4 v1, 0x2
+    
+    if-ne v1, p1, :disabled_or_unavailable_stroke
+    
+    const-string v1, "my_active_standard_tile_stroke_width"
+    
+    const-string v2, "my_active_standard_tile_stroke_color"
+    
+    goto :set_stroke_and_radius
+    
+    :disabled_or_unavailable_stroke
+    if-eqz p1, :unavailable_stroke
+    
+    const-string v1, "my_disabled_standard_tile_stroke_width"
+    
+    const-string v2, "my_disabled_standard_tile_stroke_color"
+    
+    goto :set_stroke_and_radius
+    
+    :unavailable_stroke
+    const-string v1, "my_unavailable_standard_tile_stroke_width"
+    
+    const-string v2, "my_unavailable_standard_tile_stroke_color"
+    
+    :set_stroke_and_radius
+    const/4 v3, 0x0
+    
+    invoke-static {v5, v1, v3}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v1
+    
+    invoke-static {v5, v2, v3}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v2
+    
+    invoke-virtual {v0, v1, v2}, Landroid/graphics/drawable/GradientDrawable;->setStroke(II)V
+    
+    const-string v1, "my_standard_tile_corner_radius"
+    
+    invoke-static {v5, v1, v3}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+    
+    move-result v1
+
+    int-to-float v1, v1
+
+    invoke-virtual {v0, v1}, Landroid/graphics/drawable/GradientDrawable;->setCornerRadius(F)V
+    
+    return-object v0
+.end method
+
+.method private getGradientOrientationForStandardTile(I)Landroid/graphics/drawable/GradientDrawable$Orientation;
+    .locals 2
+    
+    const/4 v0, 0x2
+    
+    if-ne v0, p1, :inactive_or_unavailable
+    
+    const-string v0, "my_active_standard_tile_gradient_orientation"
+    
+    goto :get_orientation
+    
+    :inactive_or_unavailable
+    const/4 v0, 0x1
+    
+    if-ne v0, p1, :unavailable
+    
+    const-string v0, "my_disabled_standard_tile_gradient_orientation"
+    
+    goto :get_orientation
+    
+    :unavailable
+    const-string v0, "my_unavailable_standard_tile_gradient_orientation"
+    
+    :get_orientation
+    iget-object v1, p0, Lmiui/systemui/controlcenter/qs/tileview/StandardTileIconView;->pluginContext:Landroid/content/Context;
+    
+    invoke-virtual {v1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    
+    move-result-object v1
+    
+    invoke-static {v1, v0}, Landroid/provider/Settings$System;->getString(Landroid/content/ContentResolver;Ljava/lang/String;)Ljava/lang/String;
+    
+    move-result-object v0
+    
+    invoke-static {v0}, Landroid/graphics/drawable/GradientDrawable$Orientation;->valueOf(Ljava/lang/String;)Landroid/graphics/drawable/GradientDrawable$Orientation;
+    
+    move-result-object v0
+    
+    return-object v0
+.end method
+```
+
+## Settings.apk
+
+### res/values/arrays.xml
+
+Добавить
+
+```xml
+<string-array name="gradient_orientation_entries">
+    <item>@string/gradient_orientation_entry_left_right_title</item>
+    <item>@string/gradient_orientation_entry_right_left_title</item>
+    <item>@string/gradient_orientation_entry_top_bottom_title</item>
+    <item>@string/gradient_orientation_entry_bottom_top_title</item>
+    <item>@string/gradient_orientation_entry_bl_tr_title</item>
+    <item>@string/gradient_orientation_entry_br_tl_title</item>
+    <item>@string/gradient_orientation_entry_tl_br_title</item>
+    <item>@string/gradient_orientation_entry_tr_bl_title</item>
+</string-array>
+<string-array name="gradient_orientation_values">
+    <item>LEFT_RIGHT</item>
+    <item>RIGHT_LEFT</item>
+    <item>TOP_BOTTOM</item>
+    <item>BOTTOM_TOP</item>
+    <item>BL_TR</item>
+    <item>BR_TL</item>
+    <item>TL_BR</item>
+    <item>TR_BL</item>
+</string-array>
+```
+
+### res/values/strings.xml
+
+Добавить
+
+```xml
+<string name="gradient_orientation_entry_left_right_title">Left to right</string>
+<string name="gradient_orientation_entry_right_left_title">Right to left</string>
+<string name="gradient_orientation_entry_top_bottom_title">Top to bottom</string>
+<string name="gradient_orientation_entry_bottom_top_title">Bottom to top</string>
+<string name="gradient_orientation_entry_bl_tr_title">Bottom left to top right</string>
+<string name="gradient_orientation_entry_br_tl_title">Bottom right to top left</string>
+<string name="gradient_orientation_entry_tl_br_title">Top left to bottom right</string>
+<string name="gradient_orientation_entry_tr_bl_title">Top right to bottom left</string>
+```
+
+### res/values-ru/strings.xml
+
+Добавить
+
+```xml
+<string name="gradient_orientation_entry_left_right_title">Слева направо</string>
+<string name="gradient_orientation_entry_right_left_title">Справа налево</string>
+<string name="gradient_orientation_entry_top_bottom_title">Сверху вниз</string>
+<string name="gradient_orientation_entry_bottom_top_title">Снизу вверх</string>
+<string name="gradient_orientation_entry_bl_tr_title">С нижнего левого в верхний правый угол</string>
+<string name="gradient_orientation_entry_br_tl_title">С нижнего правого в верхний левый угол</string>
+<string name="gradient_orientation_entry_tl_br_title">С верхнего левого в нижний правый угол</string>
+<string name="gradient_orientation_entry_tr_bl_title">С верхнего правого в нижний левый угол</string>
+```
+
+### res/xml/*.xml
+
+Добавить
+
+```xml
+<PreferenceCategory android:title="Дизайн тоглов">    
+    <XMiuiCheckBoxPreference
+        android:title="Настройки оформления тоглов"
+        android:key="my_new_cc_settings_enabled"
+        android:defaultValue="false"
+        android:summaryOn="Включены"
+        android:summaryOff="Выключены" />
+    <XMiuiColorPickerPreference 
+        android:title="Цвет включенного тогла" 
+        android:key="my_active_standard_tile_bg_color"  
+        android:defaultValue="#ff3d84ff"
+        android:dependency="my_new_cc_settings_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Цвет выключенного тогла" 
+        android:key="my_disabled_standard_tile_bg_color"  
+        android:defaultValue="#26ffffff"
+        android:dependency="my_new_cc_settings_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Цвет недоступного тогла" 
+        android:key="my_unavailable_standard_tile_bg_color"  
+        android:defaultValue="#26ffffff"
+        android:dependency="my_new_cc_settings_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiCheckBoxPreference
+        android:title="Градиент тоглов"
+        android:key="my_standard_tile_bg_gradient_enabled"
+        android:defaultValue="false"
+        android:summaryOn="Включен"
+        android:summaryOff="Выключен"
+        android:dependency="my_new_cc_settings_enabled" />
+    <XMiuiColorPickerPreference 
+        android:title="Первый цвет градиента включенного тогла" 
+        android:key="my_active_standard_tile_bg_gradient_first_color"  
+        android:defaultValue="#ff3d84ff" 
+        android:dependency="my_standard_tile_bg_gradient_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Второй цвет градиента включенного тогла" 
+        android:key="my_active_standard_tile_bg_gradient_second_color"  
+        android:defaultValue="#ff3d84ff" 
+        android:dependency="my_standard_tile_bg_gradient_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Первый цвет градиента выключенного тогла" 
+        android:key="my_disabled_standard_tile_bg_gradient_first_color"  
+        android:defaultValue="#26ffffff" 
+        android:dependency="my_standard_tile_bg_gradient_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Второй цвет градиента выключенного тогла" 
+        android:key="my_disabled_standard_tile_bg_gradient_second_color"  
+        android:defaultValue="#26ffffff" 
+        android:dependency="my_standard_tile_bg_gradient_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Первый цвет градиента недоступного тогла" 
+        android:key="my_unavailable_standard_tile_stroke_width"  
+        android:defaultValue="#26ffffff" 
+        android:dependency="my_standard_tile_bg_gradient_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Второй цвет градиента недоступного тогла" 
+        android:key="my_unavailable_standard_tile_stroke_color"  
+        android:defaultValue="#26ffffff" 
+        android:dependency="my_standard_tile_bg_gradient_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiListPreference 
+        android:entries="@array/gradient_orientation_entries"
+        android:entryValues="@array/gradient_orientation_values"
+        android:title="Ориентация градиента включенного тогла"
+        android:key="my_active_standard_tile_gradient_orientation"
+        android:summary="%s"
+        android:defaultValue="LEFT_RIGHT" 
+        android:dependency="my_standard_tile_bg_gradient_enabled" />
+    <XMiuiListPreference 
+        android:entries="@array/gradient_orientation_entries"
+        android:entryValues="@array/gradient_orientation_values"
+        android:title="Ориентация градиента выключенного тогла"
+        android:key="my_disabled_standard_tile_gradient_orientation"
+        android:summary="%s"
+        android:defaultValue="LEFT_RIGHT"
+        android:dependency="my_standard_tile_bg_gradient_enabled" />
+    <XMiuiListPreference 
+        android:entries="@array/gradient_orientation_entries"
+        android:entryValues="@array/gradient_orientation_values"
+        android:title="Ориентация градиента недоступного тогла"
+        android:key="my_unavailable_standard_tile_gradient_orientation"
+        android:summary="%s"
+        android:defaultValue="LEFT_RIGHT"
+        android:dependency="my_standard_tile_bg_gradient_enabled" />
+    <XMiuiSeekBarPreference 
+        android:layout="@layout/miuix_seekbar" 
+        android:title="Ширина обводки включенного тогла" 
+        android:key="my_active_standard_tile_stroke_width" 
+        android:defaultValue="0"
+        android:dependency="my_new_cc_settings_enabled"
+        enableSummary="true" 
+        min="0" 
+        max="20" />
+    <XMiuiSeekBarPreference 
+        android:layout="@layout/miuix_seekbar" 
+        android:title="Ширина обводки выключенного тогла" 
+        android:key="my_disabled_standard_tile_stroke_width" 
+        android:defaultValue="0"
+        android:dependency="my_new_cc_settings_enabled"
+        enableSummary="true" 
+        min="0" 
+        max="20" />
+    <XMiuiSeekBarPreference 
+        android:layout="@layout/miuix_seekbar" 
+        android:title="Ширина обводки недоступного тогла" 
+        android:key="my_unavailable_standard_tile_stroke_width" 
+        android:defaultValue="0"
+        android:dependency="my_new_cc_settings_enabled"
+        enableSummary="true" 
+        min="0" 
+        max="20" />
+    <XMiuiColorPickerPreference 
+        android:title="Цвет обводки включенного тогла" 
+        android:key="my_active_standard_tile_stroke_color"  
+        android:defaultValue="#ff3d84ff"
+        android:dependency="my_new_cc_settings_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Цвет обводки выключенного тогла" 
+        android:key="my_disabled_standard_tile_stroke_color"  
+        android:defaultValue="#26ffffff"
+        android:dependency="my_new_cc_settings_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiColorPickerPreference 
+        android:title="Цвет обводки недоступного тогла" 
+        android:key="my_unavailable_standard_tile_stroke_color"  
+        android:defaultValue="#26ffffff"
+        android:dependency="my_new_cc_settings_enabled"
+        alphaSlider="true" 
+        hexValue="true" />
+    <XMiuiSeekBarPreference 
+        android:layout="@layout/miuix_seekbar" 
+        android:title="Радиус закругления углов тогла" 
+        android:key="my_standard_tile_corner_radius" 
+        android:defaultValue="40"
+        android:dependency="my_new_cc_settings_enabled"
+        enableSummary="true" 
+        min="0" 
+        max="100" />
+</PreferenceCategory>
+```

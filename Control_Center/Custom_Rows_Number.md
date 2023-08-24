@@ -1,6 +1,8 @@
-# MiuiSystemUIPlugin.apk
+# Настройка количества строк в центре управления
 
-## Lmiui/systemui/controlcenter/qs/QSPager;
+## MiuiSystemUIPlugin.apk
+
+### Класс Lmiui/systemui/controlcenter/qs/QSPager;
 
 Добавить в конец:
 
@@ -66,7 +68,7 @@ const/4 v8, 0x4
 iget v8, p0, Lmiui/systemui/controlcenter/qs/QSPager;->myRowsCount:I
 ```
 
-# Settings.apk
+## Settings.apk
 
 `*.xml`
 

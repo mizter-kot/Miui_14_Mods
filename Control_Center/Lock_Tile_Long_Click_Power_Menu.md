@@ -1,0 +1,25 @@
+# Вызов нового меню перезагрузки при удерживании тайла или тогла блокировки экрана
+
+## MiuiSystemUI.apk
+
+### Класс Lcom/android/systemui/qs/tiles/ScreenLockTile;
+
+Заменить следующий метод на
+
+```smali
+.method protected handleLongClick(Landroid/view/View;)V
+    .locals 0
+
+    invoke-static {}, Landroid/view/WindowManagerGlobal;->getWindowManagerService()Landroid/view/IWindowManager;
+
+    move-result-object p0
+
+    :try_start_4
+    invoke-interface {p0}, Landroid/view/IWindowManager;->showGlobalActions()V
+    :try_end_7
+    .catch Landroid/os/RemoteException; {:try_start_4 .. :try_end_7} :catch_8
+
+    :catch_8
+    return-void
+.end method
+```

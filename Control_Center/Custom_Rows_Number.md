@@ -1,4 +1,6 @@
-# Lmiui/systemui/controlcenter/qs/QSPager;
+# MiuiSystemUIPlugin.apk
+
+## Lmiui/systemui/controlcenter/qs/QSPager;
 
 Добавить в конец:
 

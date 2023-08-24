@@ -66,8 +66,7 @@ const/4 v8, 0x4
 iget v8, p0, Lmiui/systemui/controlcenter/qs/QSPager;->myRowsCount:I
 ```
 
-
-# Настройки
+# Settings.apk
 
 `*.xml`
 

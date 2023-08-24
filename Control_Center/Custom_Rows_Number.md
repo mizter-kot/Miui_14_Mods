@@ -70,7 +70,7 @@ iget v8, p0, Lmiui/systemui/controlcenter/qs/QSPager;->myRowsCount:I
 
 ## Settings.apk
 
-`*.xml`
+`res/xml/*.xml`
 
 ```xml
 <XMiuiSeekBarPreference 
@@ -80,13 +80,13 @@ iget v8, p0, Lmiui/systemui/controlcenter/qs/QSPager;->myRowsCount:I
     enableSummary="true" />
 ```
     
-`values/strings.xml`
+`res/values/strings.xml`
 
 ```xml
 <string name="my_first_page_rows_count_title">Number of rows of toggles on the first page</string>
 ```
 
-`values-ru/strings.xml`
+`res/values-ru/strings.xml`
 
 ```xml
 <string name="my_first_page_rows_count_title">Количество рядов тоглов на первой странице</string>

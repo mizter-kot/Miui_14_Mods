@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_active_color_title"
+            android:key="update_my_active_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_disabled_color_title"
+            android:key="update_my_disabled_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_unavailable_color_title"
+            android:key="update_my_unavailable_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_gradient_enabled_title"
+            android:key="update_my_gradient_enabled"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_active_gradient_first_color_title"
+            android:key="update_my_active_gradient_first_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_active_gradient_second_color_title"
+            android:key="update_my_active_gradient_second_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_disabled_gradient_first_color_title"
+            android:key="update_my_disabled_gradient_first_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_disabled_gradient_second_color_title"
+            android:key="update_my_disabled_gradient_second_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_unavailable_gradient_first_color_title"
+            android:key="update_my_unavailable_gradient_first_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_unavailable_gradient_second_color_title"
+            android:key="update_my_unavailable_gradient_second_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_active_gradient_orientation_title"
+            android:key="update_my_active_gradient_orientation"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_disabled_gradient_orientation_title"
+            android:key="update_my_disabled_gradient_orientation"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_unavailable_gradient_orientation_title"
+            android:key="update_my_unavailable_gradient_orientation"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_active_stroke_color_title"
+            android:key="update_my_active_stroke_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_disabled_stroke_color_title"
+            android:key="update_my_disabled_stroke_color"
+            android:defaultValue="false" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/update_my_unavailable_stroke_color_title"
+            android:key="update_my_unavailable_stroke_color"
+            android:defaultValue="false" />
+</PreferenceScreen>

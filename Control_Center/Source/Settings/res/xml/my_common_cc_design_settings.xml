@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <PreferenceScreen android:title="@string/my_common_cc_design_settings_choice_title" android:fragment="com.android.settings.MyCommonCCDesignSettingsChoice" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_active_color_title"
+            android:key="my_active_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_disabled_color_title"
+            android:key="my_disabled_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_unavailable_color_title"
+            android:key="my_unavailable_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/my_gradient_enabled_title"
+            android:key="my_gradient_enabled"
+            android:defaultValue="false"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_active_gradient_first_color_title"
+            android:key="my_active_gradient_first_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_active_gradient_second_color_title"
+            android:key="my_active_gradient_second_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_disabled_gradient_first_color_title"
+            android:key="my_disabled_gradient_first_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_disabled_gradient_second_color_title"
+            android:key="my_disabled_gradient_second_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_unavailable_gradient_first_color_title"
+            android:key="my_unavailable_gradient_first_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_unavailable_gradient_second_color_title"
+            android:key="my_unavailable_gradient_second_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_active_gradient_orientation_title"
+            android:key="my_active_gradient_orientation"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_disabled_gradient_orientation_title"
+            android:key="my_disabled_gradient_orientation"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_unavailable_gradient_orientation_title"
+            android:key="my_unavailable_gradient_orientation"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT"
+            android:dependency="my_gradient_enabled"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_active_stroke_color_title"
+            android:key="my_active_stroke_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_disabled_stroke_color_title"
+            android:key="my_disabled_stroke_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+        <XMiuiColorPickerPreference
+            android:title="@string/my_unavailable_stroke_color_title"
+            android:key="my_unavailable_stroke_color"
+            android:defaultValue="#ffffffff"
+            alphaSlider="true"
+            hexValue="true"
+            intent="my.settings.intent.my_common_cc_design_settings.CHANGE" />
+</PreferenceScreen>

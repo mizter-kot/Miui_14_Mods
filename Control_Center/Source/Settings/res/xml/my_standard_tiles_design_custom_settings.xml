@@ -64,7 +64,7 @@
             intent="my.settings.intent.standard_tile_background.CHANGE" />
         <XMiuiColorPickerPreference 
             android:title="@string/my_unavailable_standard_tile_bg_gradient_first_color_title" 
-            android:key="my_unavailable_standard_tile_stroke_width"  
+            android:key="my_unavailable_standard_tile_bg_gradient_first_color"  
             android:defaultValue="#26ffffff"
             android:dependency="my_standard_tile_bg_gradient_enabled"
             alphaSlider="true" 
@@ -72,7 +72,7 @@
             intent="my.settings.intent.standard_tile_background.CHANGE" />
         <XMiuiColorPickerPreference 
             android:title="@string/my_unavailable_standard_tile_bg_gradient_second_color_title" 
-            android:key="my_unavailable_standard_tile_stroke_color"  
+            android:key="my_unavailable_standard_tile_bg_gradient_second_color"  
             android:defaultValue="#26ffffff"
             android:dependency="my_standard_tile_bg_gradient_enabled"
             alphaSlider="true" 

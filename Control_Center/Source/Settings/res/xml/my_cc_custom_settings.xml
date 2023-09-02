@@ -10,6 +10,7 @@
             android:defaultValue="false"
             intent="my.settings.intent.my_new_cc_settings_enabled.CHANGE" />
         <PreferenceScreen android:title="@string/my_cc_layout_custom_settings_title" android:fragment="com.android.settings.MyCCLayoutCustomSettings" />
+        <PreferenceScreen android:title="@string/my_common_cc_design_settings_title" android:fragment="com.android.settings.MyCommonCCDesignSettings" />
         <PreferenceScreen android:title="@string/my_big_tiles_value_custom_settings_title" android:fragment="com.android.settings.MyBigTilesValueCustomSettings" />
         <PreferenceScreen android:title="@string/my_big_tiles_design_custom_settings_title" android:fragment="com.android.settings.MyBigTilesDesignCustomSettings" />
         <PreferenceScreen android:title="@string/my_standard_tiles_design_custom_settings_title" android:fragment="com.android.settings.MyStandardTilesDesignCustomSettings" />

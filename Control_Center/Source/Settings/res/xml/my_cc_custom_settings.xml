@@ -1,1 +1,17 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <XMiuiCheckBoxPreference
+            android:title="@string/my_new_cc_settings_enabled_title"
+            android:key="my_new_cc_settings_enabled"
+            android:defaultValue="false"
+            intent="my.settings.intent.my_new_cc_settings_enabled.CHANGE" />
+        <PreferenceScreen android:title="@string/my_cc_layout_custom_settings_title" android:fragment="com.android.settings.MyCCLayoutCustomSettings" />
+        <PreferenceScreen android:title="@string/my_big_tiles_value_custom_settings_title" android:fragment="com.android.settings.MyBigTilesValueCustomSettings" />
+        <PreferenceScreen android:title="@string/my_big_tiles_design_custom_settings_title" android:fragment="com.android.settings.MyBigTilesDesignCustomSettings" />
+        <PreferenceScreen android:title="@string/my_standard_tiles_design_custom_settings_title" android:fragment="com.android.settings.MyStandardTilesDesignCustomSettings" />
+        <PreferenceScreen android:title="@string/my_sliders_design_custom_settings_title" android:fragment="com.android.settings.MySlidersDesignCustomSettings" />
+</PreferenceScreen>

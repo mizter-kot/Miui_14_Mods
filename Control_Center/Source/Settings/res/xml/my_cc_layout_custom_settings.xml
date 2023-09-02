@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <XMiuiSeekBarPreference 
+            android:title="@string/my_first_page_rows_count_title"
+            android:key="my_first_page_rows_count"
+            android:defaultValue="2" min="1" max="4"
+            enableSummary="true"
+            intent="my.settings.intent.custom_tiles_layout.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/slider_on_the_left_entries"
+            android:entryValues="@array/slider_on_the_left_values"
+            android:title="@string/my_slider_on_the_left_title"
+            android:key="my_slider_on_the_left"
+            android:summary="%s"
+            android:defaultValue="BRIGHTNESS"
+            intent="my.settings.intent.custom_tiles_layout.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/tiles_count_entries"
+            android:entryValues="@array/tiles_count_values"
+            android:title="@string/my_tiles_count_title"
+            android:key="my_tiles_count"
+            android:summary="%s"
+            android:defaultValue="2"
+            intent="my.settings.intent.custom_tiles_layout.CHANGE" />        
+        <XMiuiListPreference 
+            android:entries="@array/first_and_second_tile_position_entries"
+            android:entryValues="@array/first_and_second_tile_position_values"
+            android:title="@string/my_1st_and_2nd_tiles_position_title"
+            android:key="my_1st_and_2nd_tiles_position"
+            android:summary="%s"
+            android:defaultValue="LEFT"
+            intent="my.settings.intent.custom_tiles_layout.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/third_and_fourth_tile_position_entries"
+            android:entryValues="@array/third_and_fourth_tile_position_values"
+            android:title="@string/my_3rd_and_4th_tiles_position_title"
+            android:key="my_3rd_and_4th_tiles_position"
+            android:summary="%s"
+            android:defaultValue="LEFT"
+            intent="my.settings.intent.custom_tiles_layout.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/fifth_and_sixth_tile_position_entries"
+            android:entryValues="@array/fifth_and_sixth_tile_position_values"
+            android:title="@string/my_5th_and_6th_tiles_position_title"
+            android:key="my_5th_and_6th_tiles_position"
+            android:summary="%s"
+            android:defaultValue="LEFT"
+            intent="my.settings.intent.custom_tiles_layout.CHANGE" />
+</PreferenceScreen>

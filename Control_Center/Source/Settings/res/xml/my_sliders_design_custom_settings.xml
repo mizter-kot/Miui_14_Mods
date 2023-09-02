@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_fg_color_title" 
+            android:key="my_slider_fg_color"  
+            android:defaultValue="#ffffffff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_bg_color_title" 
+            android:key="my_slider_bg_color"  
+            android:defaultValue="#26ffffff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />      
+        <XMiuiCheckBoxPreference
+            android:title="@string/my_slider_gradient_enabled_title"
+            android:key="my_slider_gradient_enabled"
+            android:defaultValue="false"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_fg_gradient_first_color_title" 
+            android:key="my_slider_fg_gradient_first_color"  
+            android:defaultValue="#ffffffff"
+            android:dependency="my_slider_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_fg_gradient_second_color_title" 
+            android:key="my_slider_fg_gradient_second_color"  
+            android:defaultValue="#ffffffff"
+            android:dependency="my_slider_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />            
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_bg_gradient_first_color_title" 
+            android:key="my_slider_bg_gradient_first_color"  
+            android:defaultValue="#26ffffff"
+            android:dependency="my_slider_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_bg_gradient_second_color_title" 
+            android:key="my_slider_bg_gradient_second_color"  
+            android:defaultValue="#26ffffff"
+            android:dependency="my_slider_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_slider_fg_gradient_orientation_title"
+            android:key="my_slider_fg_gradient_orientation"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT" 
+            android:dependency="my_slider_gradient_enabled"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_slider_bg_gradient_orientation_title"
+            android:key="my_slider_bg_gradient_orientation"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT" 
+            android:dependency="my_slider_gradient_enabled"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiSeekBarPreference 
+            android:layout="@layout/miuix_seekbar" 
+            android:title="@string/my_slider_stroke_width_title" 
+            android:key="my_slider_stroke_width" 
+            android:defaultValue="0"
+            enableSummary="true" 
+            min="0" max="20"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_stroke_color_title" 
+            android:key="my_slider_stroke_color"  
+            android:defaultValue="#00000000"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiSeekBarPreference 
+            android:layout="@layout/miuix_seekbar" 
+            android:title="@string/my_slider_corner_radius_title" 
+            android:key="my_slider_corner_radius" 
+            android:defaultValue="40"
+            enableSummary="true" 
+            min="0" max="100"
+            intent="my.settings.intent.slider_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_slider_icon_color_title" 
+            android:key="my_slider_icon_color"  
+            android:defaultValue="#4d000000"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.slider_background.CHANGE" />
+</PreferenceScreen>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <XMiuiListPreference 
+            android:entries="@array/custom_tiles_tags_entries"
+            android:entryValues="@array/custom_tiles_tags_values"
+            android:title="@string/my_custom_big_tile_a_tag_title"
+            android:key="my_custom_big_tile_a_tag"
+            android:summary="%s"
+            android:defaultValue="wifi" />
+        <XMiuiListPreference 
+            android:entries="@array/custom_tiles_tags_entries"
+            android:entryValues="@array/custom_tiles_tags_values"
+            android:title="@string/my_custom_big_tile_b_tag_title"
+            android:key="my_custom_big_tile_b_tag"
+            android:summary="%s"
+            android:defaultValue="bt" />
+        <XMiuiListPreference 
+            android:entries="@array/custom_tiles_tags_entries"
+            android:entryValues="@array/custom_tiles_tags_values"
+            android:title="@string/my_custom_big_tile_c_tag_title"
+            android:key="my_custom_big_tile_c_tag"
+            android:summary="%s"
+            android:defaultValue="mute" />
+        <XMiuiListPreference 
+            android:entries="@array/custom_tiles_tags_entries"
+            android:entryValues="@array/custom_tiles_tags_values"
+            android:title="@string/my_custom_big_tile_d_tag_title"
+            android:key="my_custom_big_tile_d_tag"
+            android:summary="%s"
+            android:defaultValue="quietmode" />
+        <XMiuiListPreference 
+            android:entries="@array/custom_tiles_tags_entries"
+            android:entryValues="@array/custom_tiles_tags_values"
+            android:title="@string/my_custom_big_tile_e_tag_title"
+            android:key="my_custom_big_tile_e_tag"
+            android:summary="%s"
+            android:defaultValue="screenshot" />
+        <XMiuiListPreference 
+            android:entries="@array/custom_tiles_tags_entries"
+            android:entryValues="@array/custom_tiles_tags_values"
+            android:title="@string/my_custom_big_tile_f_tag_title"
+            android:key="my_custom_big_tile_f_tag"
+            android:summary="%s"
+            android:defaultValue="gps" />
+</PreferenceScreen>

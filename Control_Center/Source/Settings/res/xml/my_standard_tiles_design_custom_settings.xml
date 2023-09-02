@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen 
+    android:layoutDirection="locale"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings" 
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_active_standard_tile_bg_color_title" 
+            android:key="my_active_standard_tile_bg_color"  
+            android:defaultValue="#ff3d84ff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_disabled_standard_tile_bg_color_title" 
+            android:key="my_disabled_standard_tile_bg_color"  
+            android:defaultValue="#26ffffff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_unavailable_standard_tile_bg_color_title" 
+            android:key="my_unavailable_standard_tile_bg_color"  
+            android:defaultValue="#26ffffff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiCheckBoxPreference
+            android:title="@string/my_standard_tile_bg_gradient_enabled_title"
+            android:key="my_standard_tile_bg_gradient_enabled"
+            android:defaultValue="false"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_active_standard_tile_bg_gradient_first_color_title" 
+            android:key="my_active_standard_tile_bg_gradient_first_color"  
+            android:defaultValue="#ff3d84ff"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_active_standard_tile_bg_gradient_second_color_title" 
+            android:key="my_active_standard_tile_bg_gradient_second_color"  
+            android:defaultValue="#ff3d84ff"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_disabled_standard_tile_bg_gradient_first_color_title" 
+            android:key="my_disabled_standard_tile_bg_gradient_first_color"  
+            android:defaultValue="#26ffffff"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_disabled_standard_tile_bg_gradient_second_color_title" 
+            android:key="my_disabled_standard_tile_bg_gradient_second_color"  
+            android:defaultValue="#26ffffff"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_unavailable_standard_tile_bg_gradient_first_color_title" 
+            android:key="my_unavailable_standard_tile_stroke_width"  
+            android:defaultValue="#26ffffff"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_unavailable_standard_tile_bg_gradient_second_color_title" 
+            android:key="my_unavailable_standard_tile_stroke_color"  
+            android:defaultValue="#26ffffff"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_active_standard_tile_gradient_orientation_title"
+            android:key="my_active_standard_tile_gradient_orientation"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_disabled_standard_tile_gradient_orientation_title"
+            android:key="my_disabled_standard_tile_gradient_orientation"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiListPreference 
+            android:entries="@array/gradient_orientation_entries"
+            android:entryValues="@array/gradient_orientation_values"
+            android:title="@string/my_unavailable_standard_tile_gradient_orientation_title"
+            android:key="my_unavailable_standard_tile_gradient_orientation"
+            android:dependency="my_standard_tile_bg_gradient_enabled"
+            android:summary="%s"
+            android:defaultValue="LEFT_RIGHT"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiSeekBarPreference 
+            android:layout="@layout/miuix_seekbar" 
+            android:title="@string/my_active_standard_tile_stroke_width_title" 
+            android:key="my_active_standard_tile_stroke_width" 
+            android:defaultValue="0"
+            enableSummary="true" 
+            min="0" max="20"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiSeekBarPreference 
+            android:layout="@layout/miuix_seekbar" 
+            android:title="@string/my_disabled_standard_tile_stroke_width_title" 
+            android:key="my_disabled_standard_tile_stroke_width" 
+            android:defaultValue="0"
+            enableSummary="true" 
+            min="0" max="20"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiSeekBarPreference 
+            android:layout="@layout/miuix_seekbar" 
+            android:title="@string/my_unavailable_standard_tile_stroke_width_title" 
+            android:key="my_unavailable_standard_tile_stroke_width" 
+            android:defaultValue="0"
+            enableSummary="true" 
+            min="0" max="20"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_active_standard_tile_stroke_color_title" 
+            android:key="my_active_standard_tile_stroke_color"  
+            android:defaultValue="#ff3d84ff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_disabled_standard_tile_stroke_color_title" 
+            android:key="my_disabled_standard_tile_stroke_color"  
+            android:defaultValue="#26ffffff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiColorPickerPreference 
+            android:title="@string/my_unavailable_standard_tile_stroke_color_title" 
+            android:key="my_unavailable_standard_tile_stroke_color"  
+            android:defaultValue="#26ffffff"
+            alphaSlider="true" 
+            hexValue="true"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+        <XMiuiSeekBarPreference 
+            android:layout="@layout/miuix_seekbar" 
+            android:title="@string/my_standard_tile_corner_radius_title" 
+            android:key="my_standard_tile_corner_radius" 
+            android:defaultValue="40"
+            enableSummary="true" 
+            min="0" max="100"
+            intent="my.settings.intent.standard_tile_background.CHANGE" />
+</PreferenceScreen>

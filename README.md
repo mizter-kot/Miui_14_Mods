@@ -3,7 +3,7 @@
 - XMiuiSettings - [Ссылка](https://4pda.to/forum/index.php?showtopic=760281&view=findpost&p=96948587);
 - android/Utils/Utils и CustomUpdater - [Ссылка](https://4pda.to/forum/index.php?showtopic=760281&view=findpost&p=91738162).
 
-## Описание [модификация всего центра управления](Control_Center/Модификация%20всего%20центра%20управления.md):
+## Описание [модификации всего центра управления](Control_Center/Модификация%20всего%20центра%20управления.md):
 - Покраска тайлов, тоглов, слайдеров:
   - Цвет заднего фона: одиночный цвет, градиент;
   - Ширина и покраска обводки;
